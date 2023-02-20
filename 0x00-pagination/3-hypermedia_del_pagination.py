@@ -50,7 +50,7 @@ class Server:
         for i in range(index, index + page_size):
             while True:
                 try:
-                    data_item = self.__indexed_dataset.get(i + z)
+                    data_item = self.__indexed_dataset[i + z]
                     break
                 except KeyError:
                     z = z + 1
