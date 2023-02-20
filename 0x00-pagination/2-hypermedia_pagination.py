@@ -54,6 +54,16 @@ class Server:
             return []
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
+        """
+            takes the same arguments (and defaults) as get_page and returns
+            a dictionary containing the following key-value pairs:
+                page_size: the length of the returned page
+                page: the current page number
+                data: the dataset page
+                next_page: number of the next page
+                prev_page: number of the previous page
+                total_pages: the total number of pages in the dataset
+        """
         data = self.get_page(page, page_size)
         next_page = page + 1
         prev_page = page - 1
