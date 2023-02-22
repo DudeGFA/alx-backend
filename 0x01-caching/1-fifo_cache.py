@@ -14,7 +14,7 @@ class FIFOCache(BaseCaching):
             Initialize instance variables
         """
         super().__init__()
-        self.put_order = {}
+        self.put_order = []
 
     def put(self, key, item):
         """
@@ -22,22 +22,18 @@ class FIFOCache(BaseCaching):
             to the cache
         """
         if key is not None and item is not None:
+            if key not in self.cache_data.keys():
+                self.put_order.append(key)
+
+            if len(self.put_order) > FIFOCache.MAX_ITEMS:
+                print("DISCARD: {}".format(self.put_order[0]))
+                del self.cache_data[self.put_order[0]]
+                del self.put_order[0]
             self.cache_data[key] = item
-        else:
-            return
 
-        if len(self.cache_data.keys()) > FIFOCache.MAX_ITEMS:
-            print("DISCARD: {}".format(self.put_order[0]))
-            del self.cache_data[self.put_order[0]]
-            self.put_order[0] = self.put_order[1]
-            self.put_order[1] = self.put_order[2]
-            self.put_order[2] = self.put_order[3]
-            del self.put_order[3]
-        self.put_order[len(self.put_order)] = key
-
-    def get(self, key):
-        """
-            Gets an item
-            stored in the cache
-        """
-        return self.cache_data.get(key)
+        def get(self, key):
+            """
+                Gets an item
+                stored in the cache
+            """
+            return self.cache_data.get(key)
