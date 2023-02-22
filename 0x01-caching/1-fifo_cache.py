@@ -23,6 +23,8 @@ class FIFOCache(BaseCaching):
         """
         if key is not None and item is not None:
             self.cache_data[key] = item
+        else:
+            return
 
         if len(self.cache_data.keys()) > FIFOCache.MAX_ITEMS:
             print("DISCARD: {}".format(self.put_order[0]))
