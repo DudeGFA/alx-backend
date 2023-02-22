@@ -31,9 +31,9 @@ class FIFOCache(BaseCaching):
                 del self.put_order[0]
             self.cache_data[key] = item
 
-        def get(self, key):
-            """
-                Gets an item
-                stored in the cache
-            """
-            return self.cache_data.get(key)
+    def get(self, key):
+        """
+            Gets an item
+            stored in the cache
+        """
+        return self.cache_data.get(key)
