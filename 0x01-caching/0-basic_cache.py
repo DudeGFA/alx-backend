@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
     Contains class BasicCache
 """
@@ -5,6 +6,9 @@ from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
+    """
+        Child of class BaseCaching
+    """
     def put(self, key, item):
         """
             Adds a new item
